@@ -18,11 +18,11 @@ public class User {
 
     /**
      * Creates User Object
-     * @param userName
-     * @param password
-     * @param name
-     * @param emailAddress
-     * @param role
+     * @param userName this is a unique name the user can be identified as in the system
+     * @param password this is the user created log-in code
+     * @param name  this is a user's full name
+     * @param emailAddress  this is the email address that a user wants to be contacted by
+     * @param role  this identifies what access the user has with the system
      */
     User(String userName, String password, String name, String emailAddress, String role)
     {
@@ -38,7 +38,7 @@ public class User {
 
     /**
      * Updates the userName field
-     * @param userName
+     * @param userName this is a unique name the user can be identified as in the system
      */
     public void setUserName(String userName)
     {
@@ -48,7 +48,7 @@ public class User {
     /**
      * Needs to be updated to do the required hashing of the password
      * Updates the password field
-     * @param password
+     * @param password this is the user created log-in code
      */
     public void setPassword(String password)
     {
@@ -57,7 +57,7 @@ public class User {
 
     /**
      * Updates the name field
-     * @param name
+     * @param name this is a user's full name
      */
     public void setName(String name)
     {
@@ -75,7 +75,7 @@ public class User {
 
     /**
      * Updates email address field
-     * @param emailAddress
+     * @param emailAddress this is the email address that a user wants to be contacted by
      */
     public void setEmailAddress(String emailAddress)
     {
@@ -93,7 +93,7 @@ public class User {
 
     /**
      * Update role field
-     * @param role
+     * @param role this identifies what access the user has with the system
      */
     public void setRole(String role)
     {
