@@ -8,6 +8,7 @@ package edu.secourse.salonapp.models;
  * @author Ven Corwell
  * @version 1.0
  */
+
 public class User {
     private int accountNumber; // Need to have account number be unique
     private String userName;
