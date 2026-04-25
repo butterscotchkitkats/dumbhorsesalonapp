@@ -1,22 +1,20 @@
 package edu.secourse.salonapp.services;
 
-import edu.secourse.salonapp.models.User;
+import java.util.ArrayList;
 
-import java.util.HashMap;
-import java.util.Map;
+public class UserService {
+    public void addUser(){
+        //create User object and add it to ArrayList users
+    }
+    public void readUser(){
+        //find the index of the object to read and then print the indicated attribute
+    }
+    public void updateUser(){
+        //find the index of the object to update and update the attribute
+    }
+    public void deleteUser(){
+        //find the index of the object to be deleted and then delete it
+    }
 
-public class UserService
-{
-     // CRUD (Create Read Update Delete)
-
-    /*
-        Steph I made a hashmap to store the Users, that way the key can be the unique account number.
-        Feel free to change it if you feel it doesn't make sense, and we should stick to an array.
-        - Ven
-     */
-
-    private Map<Integer, User> users = new HashMap<Integer, User>();
-    private int userId = 0;
-
-
+    ArrayList<Object> users = new ArrayList<Object>();
 }
