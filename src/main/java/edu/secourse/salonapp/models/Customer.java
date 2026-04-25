@@ -14,14 +14,15 @@ public class Customer extends User {
 
     /**
      * Creates Customer Object
+     * @param accountNumber this is the unique key that identifies the user in the list of users
      * @param userName this is a unique name the user can be identified as in the system
      * @param password this is the user created log-in code
      * @param name this is the customer's full name
      * @param emailAddress this is the email address that a user wants to be contacted by
      */
-    public Customer(String userName, String password, String name, String emailAddress)
+    public Customer(int accountNumber, String userName, String password, String name, String emailAddress)
     {
-        super(userName, password, name, emailAddress, "Customer");
+        super(accountNumber, userName, password, name, emailAddress, "Customer");
         this.loyaltyPoints = 0; // A new customer should start out with no points
     }
 
@@ -51,4 +52,5 @@ public class Customer extends User {
     {
         this.loyaltyPoints -= loyaltyPoints;
     }
+
 }
