@@ -8,6 +8,7 @@ package edu.secourse.salonapp.models;
  * @author Ven Corwell
  * @version 1.0
  */
+
 public class User {
     private int accountNumber; // Need to have account number be unique
     private String userName;
@@ -18,17 +19,16 @@ public class User {
 
     /**
      * Creates User Object
+     * @param accountNumber this is the unique key that identifies the user in the database
      * @param userName this is a unique name the user can be identified as in the system
      * @param password this is the user created log-in code
      * @param name  this is a user's full name
      * @param emailAddress  this is the email address that a user wants to be contacted by
      * @param role  this identifies what access the user has with the system
      */
-    User(String userName, String password, String name, String emailAddress, String role)
+    public User(int accountNumber, String userName, String password, String name, String emailAddress, String role)
     {
-        // Generate account number here?
-        accountNumber = (int) Math.ceil(Math.random());
-
+        this.accountNumber = accountNumber;
         this.userName = userName;
         this.password = password;
         this.name = name;
