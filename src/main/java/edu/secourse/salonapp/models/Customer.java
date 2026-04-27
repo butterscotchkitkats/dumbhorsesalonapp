@@ -10,6 +10,7 @@ package edu.secourse.salonapp.models;
  * @version 1.0
  */
 public class Customer extends User {
+    
     private int loyaltyPoints;
 
     /**

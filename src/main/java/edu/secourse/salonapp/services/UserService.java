@@ -17,4 +17,5 @@ public class UserService {
     }
 
     ArrayList<Object> users = new ArrayList<Object>();
+    // Should we use a hashmap instead and the key value can be the user account number?
 }
