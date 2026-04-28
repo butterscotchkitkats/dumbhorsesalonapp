@@ -15,7 +15,10 @@ public class Appointment {
     private int customerID; // Do we want this and stylistID as the user account number or as a separate number?
     private int stylistID;
     private LocalDateTime startTime;
-    private boolean status; // 1 is active, 0 is canceled
+    private Status status;
+    public enum  Status {
+        ACTIVE, CANCELLED
+    }
 
 
     /**
@@ -26,12 +29,20 @@ public class Appointment {
      * @param startTime this is the date and time when the appointment is scheduled
      * @param status this signifies whether an appointment is active or canceled
      */
-    public Appointment(int appointmentID, int customerID, int stylistID, LocalDateTime startTime, boolean status) {
+    public Appointment(int appointmentID, int customerID, int stylistID, LocalDateTime startTime, Status status) {
         this.appointmentID = appointmentID;
         this.customerID = customerID;
         this.stylistID = stylistID;
         this.startTime = startTime;
         this.status = status;
+    }
+
+    /**
+     * Retrieves appointmentID
+     * @return appointmentID
+     */
+    public int getAppointmentID() {
+        return appointmentID;
     }
 
     /**
@@ -67,7 +78,7 @@ public class Appointment {
      * Changes the status of the appointment
      * @param status this is either active or canceled
      */
-    public void changeStatus(boolean status)
+    public void changeStatus(Status status)
     {
         this.status = status;
     }
