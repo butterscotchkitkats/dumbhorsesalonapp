@@ -18,7 +18,7 @@ public class AppointmentService
      * @param stylist this is the stylist who the customer wants to cut their hair
      * @param appointmentTime this is the appointment date and time that the customer has chosen
      */
-    public void createAppointent(Customer customer, Stylist stylist, LocalDateTime appointmentTime)
+    public void createAppointment(Customer customer, Stylist stylist, LocalDateTime appointmentTime)
     {
         int appointmentID = generateAppointmentID();
         Appointment appointment = new Appointment(appointmentID, customer.getAccountNumber(), stylist.getAccountNumber(),
@@ -37,12 +37,12 @@ public class AppointmentService
         return appointmentID;
     }
 
-    public void updateAppointent()
+    public void updateAppointment()
     {
         // Break this into update appointment time and update appointment status?
     }
 
-    public void deleteAppointent(Appointment appointment)
+    public void deleteAppointment(Appointment appointment)
     {
         appointments.remove(appointment.getAppointmentID());
     }
