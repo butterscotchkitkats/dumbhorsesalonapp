@@ -4,6 +4,8 @@ import edu.secourse.salonapp.models.User;
 
 import java.util.ArrayList;
 
+import java.util.Random;
+
 /**
  * Provides users with the functionality to add, view, update, or delete their profile
  *
@@ -16,10 +18,25 @@ import java.util.ArrayList;
 public class UserService {
 
     /**
-     * Adds a user object to the list of users
-     * @param u this is a User object
+     * Creates a user object
+     * @param userName this is the user's display name
+     * @param password this is the user's password
+     * @param name this is the user's name
+     * @param emailAddress this is the user's email address
+     * @param role this is the user's role -- user
      */
 
+    public void createUser(String userName, String password, String name, String emailAddress, String role){
+        Random r = new Random();
+        int accNum = 100000 + r.nextInt(900000) ;
+        User user = new User(accNum, userName, password, name, emailAddress, role);
+        addUser(user);
+    }
+
+    /**
+     * Adds a new user to the list of users
+     * @param u this is a User object
+     */
 
     public void addUser(User u){
         users.add(u);
@@ -54,8 +71,6 @@ public class UserService {
     public void deleteUser(User u){
         users.remove(users.get(users.indexOf(u.getAccountNumber())));
     }
-
-
     ArrayList<Object> users = new ArrayList<Object>();
     // Should we use a hashmap instead and the key value can be the user account number?
     // Probably but that's a lot of work that I don't want to do :(( -Steph
