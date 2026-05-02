@@ -10,7 +10,7 @@ package edu.secourse.salonapp.models;
  */
 
 public class User {
-    private final int accountNumber; // Need to have account number be unique
+    private int accountNumber; // Need to have account number be unique
     private String userName;
     private String password; // Password needs to be a hash String
     private String name;
@@ -43,6 +43,11 @@ public class User {
     public int getAccountNumber()
     {
         return accountNumber;
+    }
+
+    public String  getUserName()
+    {
+        return userName;
     }
 
     /**

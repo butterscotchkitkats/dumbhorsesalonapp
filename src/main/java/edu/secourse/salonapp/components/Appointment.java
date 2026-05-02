@@ -45,12 +45,25 @@ public class Appointment {
         return appointmentID;
     }
 
+    public int getStylistID() {
+        return stylistID;
+    }
+
     /**
      * Retrieve's the scheduled appointment time
      * @return startTime
      */
     public LocalDateTime getStartTime() {
         return startTime;
+    }
+
+    /**
+     * Changes the customer on the scheduled appointment
+     * @param customerID this is the account number of the new customer
+     */
+    public void changeCustomer(int customerID)
+    {
+        this.customerID = customerID;
     }
 
     /**
@@ -62,17 +75,10 @@ public class Appointment {
         this.stylistID = stylistID;
     }
 
-    /**
-     * Likely won't need this function but left it just in case
-     * Changes the customer on the scheduled appointment
-     * @param customerID this is the account number of the new customer
-     */
-    /*public void changeCustomer(int customerID)
+    public void changeStartTime(LocalDateTime startTime)
     {
-        this.customerID = customerID;
+        this.startTime = startTime;
     }
-    */
-
 
     /**
      * Changes the status of the appointment

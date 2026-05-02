@@ -16,7 +16,6 @@ import java.util.ArrayList;
  */
 public class Stylist extends User{
 
-    private ArrayList<Appointment> scheduledAppointments;
     private ArrayList<LocalDate> workDays;
     /**
      * Creates Stylist Object
@@ -49,42 +48,8 @@ public class Stylist extends User{
         this.workDays.remove(workDay);
     }
 
-    /**
-     * Checks if the stylist does not have any appointments scheduled at the selected time
-     * @param date this is when the customer is requesting an appointment
-     * @return true if the requested date and time is not in the schedule
-     */
-    private boolean isTimeAvailable(LocalDateTime date)
+    public boolean isWorkDay(LocalDate date)
     {
-        boolean slotIsFree = scheduledAppointments.stream().noneMatch(a -> a.getStartTime().equals(date));
-        boolean isStylistWorking = workDays.contains(date.toLocalDate());
-        return slotIsFree && isStylistWorking;
-    }
-
-    /**
-     * Add an appointment to the stylist's schedule
-     * @param appointment this is the date and time that the customer is scheduling the appointment
-     */
-    public void addAppointment(Appointment appointment)
-    {
-        LocalDateTime appointmentTime = appointment.getStartTime();
-        // Check if the appointment date/time is available
-        if(isTimeAvailable(appointmentTime))
-        {
-            // If the selected date/time is available add it to the stylist's list of appointments
-            scheduledAppointments.add(appointment);
-        }
-        else {
-            System.out.println("Appointment time is unavailable");
-        }
-    }
-
-    /**
-     * Remove an appointment from the stylist's schedule
-     * @param appointment the date and time of the canceled appointment
-     */
-    public void removeAppointment(Appointment appointment)
-    {
-        scheduledAppointments.remove(appointment);
+        return workDays.contains(date);
     }
 }
