@@ -1,5 +1,6 @@
 package edu.secourse.salonapp.services;
 
+import edu.secourse.salonapp.components.Appointment;
 import edu.secourse.salonapp.models.User;
 
 import java.util.ArrayList;
@@ -27,10 +28,29 @@ public class UserService {
      */
 
     public void createUser(String userName, String password, String name, String emailAddress, String role){
-        Random r = new Random();
-        int accNum = 100000 + r.nextInt(900000) ;
+        int accNum = generateUserID();
         User user = new User(accNum, userName, password, name, emailAddress, role);
         addUser(user);
+    }
+
+    private int generateUserID()
+    {
+        Random r = new Random();
+        int id;
+        boolean duplicate;
+        do {
+            id = 100000 + r.nextInt(900000);
+            duplicate = false;
+            for (User user : users)
+            {
+                if (user.getAccountNumber() == id) {
+                    duplicate = true;
+                    break;
+                }
+            }
+        }while(duplicate);
+
+        return id;
     }
 
     /**
@@ -48,8 +68,18 @@ public class UserService {
      * @return User object
      */
 
-    public Object readUser(User u){
-        return(users.get(users.indexOf(u.getAccountNumber())));
+    public User readUser(User u){
+        return findByAccountNumber(u.getAccountNumber());
+    }
+
+
+    private User findByAccountNumber(int accountNumber) {
+        for (User user : users) {
+            if (user.getAccountNumber() == accountNumber) {
+                return user;
+            }
+        }
+        return null;
     }
 
     /**
@@ -59,7 +89,7 @@ public class UserService {
      */
 
     public void updateUser(User newUser, User oldUser){
-        users.remove(users.get(users.indexOf(oldUser.getAccountNumber())));
+        users.remove(users.get(users.indexOf(oldUser)));
         users.add(newUser);
     }
 
@@ -69,9 +99,7 @@ public class UserService {
      */
 
     public void deleteUser(User u){
-        users.remove(users.get(users.indexOf(u.getAccountNumber())));
+        users.remove(users.get(users.indexOf(u)));
     }
-    ArrayList<Object> users = new ArrayList<Object>();
-    // Should we use a hashmap instead and the key value can be the user account number?
-    // Probably but that's a lot of work that I don't want to do :(( -Steph
+    ArrayList<User> users = new ArrayList<User>();
 }
