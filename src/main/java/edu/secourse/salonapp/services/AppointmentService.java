@@ -79,16 +79,18 @@ public class AppointmentService
         if(a == null) return;
 
         // If this is not the same stylist, update to the new one
-        if(a.getStylistID() != stylist.getAccountNumber()) {
-            a.changeStylist(stylist.getAccountNumber());
-        }
-
-        if(appointmentTime != null) {
-            if(isStylistAvailable(stylist, appointmentTime)){
-                a.changeStartTime(appointmentTime);
+        if(stylist != null) {
+            if (a.getStylistID() != stylist.getAccountNumber()) {
+                a.changeStylist(stylist.getAccountNumber());
             }
-            else {
-                System.out.println("Appointment time not available");
+
+            if(appointmentTime != null) {
+                if(isStylistAvailable(stylist, appointmentTime)){
+                    a.changeStartTime(appointmentTime);
+                }
+                else {
+                    System.out.println("Appointment time not available");
+                }
             }
         }
         if(status != null) a.changeStatus(status);

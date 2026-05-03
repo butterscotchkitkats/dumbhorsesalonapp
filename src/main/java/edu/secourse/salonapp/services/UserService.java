@@ -1,6 +1,7 @@
 package edu.secourse.salonapp.services;
 
 import edu.secourse.salonapp.components.Appointment;
+import edu.secourse.salonapp.models.Stylist;
 import edu.secourse.salonapp.models.User;
 
 import java.util.ArrayList;
@@ -102,4 +103,21 @@ public class UserService {
         users.remove(users.get(users.indexOf(u)));
     }
     ArrayList<User> users = new ArrayList<User>();
+
+
+    /**
+     * Retrieves all users who are stylists
+     * @return list of stylists
+     */
+    public ArrayList<Stylist> getAllStylists(){
+        ArrayList<Stylist> stylists = new ArrayList<>();
+        for(User user : users){
+            if(user.getRole().equals("Stylist"))
+            {
+                stylists.add((Stylist) user);
+            }
+        }
+
+        return stylists;
+    }
 }
