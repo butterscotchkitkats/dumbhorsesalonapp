@@ -66,17 +66,38 @@ public class AppointmentService
         return findByID(a.getAppointmentID());
     }
 
-
-    public void updateAppointment(int appointmentID, Integer stylistID, LocalDateTime appointmentTime, Appointment.Status status)
+    /**
+     * Update the selected appointment attributes
+     * @param stylist this is the new or current stylist
+     * @param appointmentID this is the appointment we want to update
+     * @param appointmentTime this is the new time of the appointment. Set null if not being changed
+     * @param status this is the new status of the appointment. Set null if not being changed
+     */
+    public void updateAppointment(int appointmentID, Stylist stylist, LocalDateTime appointmentTime, Appointment.Status status)
     {
         Appointment a = findByID(appointmentID);
         if(a == null) return;
 
-        if(stylistID != null) a.changeStylist(stylistID);
-        if(appointmentTime != null) a.changeStartTime(appointmentTime);
+        // If this is not the same stylist, update to the new one
+        if(a.getStylistID() != stylist.getAccountNumber()) {
+            a.changeStylist(stylist.getAccountNumber());
+        }
+
+        if(appointmentTime != null) {
+            if(isStylistAvailable(stylist, appointmentTime)){
+                a.changeStartTime(appointmentTime);
+            }
+            else {
+                System.out.println("Appointment time not available");
+            }
+        }
         if(status != null) a.changeStatus(status);
     }
 
+    /**
+     * Deletes a selected appointment
+     * @param a this is the appointment to be removed
+     */
     public void deleteAppointment(Appointment a)
     {
         Appointment found = findByID(a.getAppointmentID());
@@ -85,6 +106,45 @@ public class AppointmentService
         }
     }
 
+    /**
+     * List of a customer's appointments
+     * @param customer this is the customer whose list will be displayed
+     * @return ArrayList of object Appointment
+     */
+    public ArrayList<Appointment> getCustomerAppointments(Customer customer)
+    {
+        ArrayList<Appointment> customerAppointments = new ArrayList<>();
+        for(Appointment appointment : appointments)
+        {
+            if(appointment.getCustomerID() == customer.getAccountNumber()) {
+                customerAppointments.add(appointment);
+            }
+        }
+        return customerAppointments;
+    }
+
+    /**
+     * List of a stylist's appointments
+     * @param stylist this is the stylist whose list will be displayed
+     * @return ArrayList of object Appointment
+     */
+    public ArrayList<Appointment> getStylistAppointments(Stylist stylist)
+    {
+        ArrayList<Appointment> stylistAppointments = new ArrayList<>();
+        for(Appointment appointment : appointments)
+        {
+            if(appointment.getStylistID() == stylist.getAccountNumber()) {
+                stylistAppointments.add(appointment);
+            }
+        }
+        return stylistAppointments;
+    }
+
+    /**
+     * Finds an appointment from the stored list
+     * @param id appointmentID number
+     * @return appointment object if found, null otherwise
+     */
     private Appointment findByID(int id) {
         for (Appointment appointment : appointments) {
             if (appointment.getAppointmentID() == id) {
@@ -94,7 +154,12 @@ public class AppointmentService
         return null;
     }
 
-    // AppointmentService becomes the single source of truth
+    /**
+     * Lets the user know if the stylist is available at the requested time
+     * @param stylist the stylist we want to know is available
+     * @param requestedTime the time a customer is requesting
+     * @return true if available, false if not
+     */
     private boolean isStylistAvailable(Stylist stylist, LocalDateTime requestedTime) {
         boolean isStylistWorking = stylist.isWorkDay(requestedTime.toLocalDate());
         boolean slotIsFree = appointments.stream()

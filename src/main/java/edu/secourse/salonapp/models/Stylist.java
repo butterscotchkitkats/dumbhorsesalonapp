@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Stylist extends User{
 
-    private ArrayList<LocalDate> workDays;
+    private ArrayList<LocalDate> workDays = new ArrayList<>();
     /**
      * Creates Stylist Object
      * @param accountNumber this is the unique key that identifies the user in the list of users

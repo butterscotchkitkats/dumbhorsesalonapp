@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 public class Appointment {
     private int appointmentID;
-    private int customerID; // Do we want this and stylistID as the user account number or as a separate number?
+    private int customerID;
     private int stylistID;
     private LocalDateTime startTime;
     private Status status;
@@ -45,6 +45,18 @@ public class Appointment {
         return appointmentID;
     }
 
+    /**
+     * Retrieves the customer id number
+     * @return customerID
+     */
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    /**
+     * Retrieves the stylist id number
+     * @return stylistID
+     */
     public int getStylistID() {
         return stylistID;
     }
@@ -75,6 +87,10 @@ public class Appointment {
         this.stylistID = stylistID;
     }
 
+    /**
+     * Changes the appointment time
+     * @param startTime this is the new start time of the appointment
+     */
     public void changeStartTime(LocalDateTime startTime)
     {
         this.startTime = startTime;
@@ -87,5 +103,14 @@ public class Appointment {
     public void changeStatus(Status status)
     {
         this.status = status;
+    }
+
+    /**
+     * Retrieves the appointment status
+     * @return appointment status - this is either ACTIVE or CANCELLED
+     */
+    public Status getStatus()
+    {
+        return status;
     }
 }
