@@ -5,7 +5,6 @@ package edu.secourse;
 public class Main {
 
 
-
     static void main() {
 
     }
