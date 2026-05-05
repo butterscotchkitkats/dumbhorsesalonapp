@@ -70,6 +70,15 @@ public class Appointment {
     }
 
     /**
+     * Retrieves the appointment status
+     * @return appointment status - this is either ACTIVE or CANCELLED
+     */
+    public Status getStatus()
+    {
+        return status;
+    }
+
+    /**
      * Changes the customer on the scheduled appointment
      * @param customerID this is the account number of the new customer
      */
@@ -105,12 +114,4 @@ public class Appointment {
         this.status = status;
     }
 
-    /**
-     * Retrieves the appointment status
-     * @return appointment status - this is either ACTIVE or CANCELLED
-     */
-    public Status getStatus()
-    {
-        return status;
-    }
 }
