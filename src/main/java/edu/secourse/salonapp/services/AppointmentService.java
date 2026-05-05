@@ -5,6 +5,8 @@ import edu.secourse.salonapp.models.Customer;
 import edu.secourse.salonapp.models.Stylist;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,6 +23,13 @@ public class AppointmentService
      */
     public void createAppointment(Customer customer, Stylist stylist, LocalDateTime appointmentTime)
     {
+        if(!isStoreOpen(appointmentTime))
+        {
+            System.out.println("I'm sorry, the store is not open at the time requested. \nOur hours are 9am - 9pm (9:00-21:00)" +
+                    "and our last appointments will be taken 15 minutes before close.");
+            return;
+        }
+
         if(!isStylistAvailable(stylist, appointmentTime))
         {
             System.out.println("Appointment not available");
@@ -84,7 +93,7 @@ public class AppointmentService
                 a.changeStylist(stylist.getAccountNumber());
             }
 
-            if(appointmentTime != null) {
+            if(isStoreOpen(appointmentTime)) {
                 if(isStylistAvailable(stylist, appointmentTime)){
                     a.changeStartTime(appointmentTime);
                 }
@@ -166,7 +175,22 @@ public class AppointmentService
         boolean isStylistWorking = stylist.isWorkDay(requestedTime.toLocalDate());
         boolean slotIsFree = appointments.stream()
                 .filter(a -> a.getStylistID() == stylist.getAccountNumber())
-                .noneMatch(a -> a.getStartTime().equals(requestedTime));
+                .noneMatch(a -> {
+                    LocalDateTime start = requestedTime.minusMinutes(15);
+                    LocalDateTime end = requestedTime.plusMinutes(15);
+                    return !a.getStartTime().isBefore(start) && !a.getStartTime().isAfter(end);
+                });
         return isStylistWorking && slotIsFree;
+    }
+
+    /**
+     * Checks if the store is open. Hours are from 9am-9pm
+     * @param requestedTime - this is the appointment time
+     * @return - false if the store is closed, else true
+     */
+    private boolean isStoreOpen(LocalDateTime requestedTime) {
+        if (requestedTime == null) return false;
+        LocalTime time = requestedTime.toLocalTime();
+        return !time.isBefore(LocalTime.of(9, 0)) && !time.isAfter(LocalTime.of(20, 45));
     }
 }
