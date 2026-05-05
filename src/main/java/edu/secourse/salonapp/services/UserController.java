@@ -5,7 +5,7 @@ import edu.secourse.salonapp.models.User;
 import java.util.Scanner;
 
 /**
- * Handles user input involving user information
+ * Handles user input involving user information hh
  *
  * <p>This class provides console-based interaction for creating, updating,
  * viewing, and deleting users in the system</p>
