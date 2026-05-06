@@ -48,6 +48,11 @@ public class Stylist extends User{
         this.workDays.remove(workDay);
     }
 
+    /**
+     * Checks if a stylist is working on the selected day
+     * @param date - this is the date we want to see if a stylist is working
+     * @return - true if the date is located in the list of days working, else false
+     */
     public boolean isWorkDay(LocalDate date)
     {
         return workDays.contains(date);

@@ -45,6 +45,10 @@ public class User {
         return accountNumber;
     }
 
+    /**
+     * Retrieves a user's username
+     * @return username
+     */
     public String  getUserName()
     {
         return this.userName;

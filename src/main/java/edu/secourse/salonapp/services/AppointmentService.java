@@ -10,6 +10,12 @@ import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Represents the actions of handling appointments
+ * <p>This class provides all CRUD functionality of appointments</p>
+ * @author Ven Corwell
+ * @version 1.0
+ */
 public class AppointmentService
 {
 
