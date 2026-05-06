@@ -33,10 +33,10 @@ public class AppointmentController {
      */
     public void showMenu(User u)
     {
-        if(u.getRole().equals("customer")){
+        if(u.getRole().equals("Customer")){
             showCustomerMenu((Customer)u);
         }
-        else if(u.getRole().equals("stylist")){
+        else if(u.getRole().equals("Stylist")){
             showStylistMenu((Stylist)u);
         }
         else{
@@ -48,7 +48,7 @@ public class AppointmentController {
      * Displays Appointment menu from the view of the customer
      * @param customer the user is a customer
      */
-    private void showCustomerMenu(Customer customer)
+    void showCustomerMenu(Customer customer)
     {
         boolean running = true;
         while (running) {
@@ -87,7 +87,7 @@ public class AppointmentController {
      * Displays Appointment menu from the view of a stylist
      * @param stylist the user is a stylist
      */
-    private void showStylistMenu(Stylist stylist)
+    void showStylistMenu(Stylist stylist)
     {
         boolean running = true;
         while (running) {
@@ -122,12 +122,12 @@ public class AppointmentController {
      * Create an appointment as a customer
      * @param customer - the user is a customer
      */
-    private void createAppointment(Customer customer)
+    void createAppointment(Customer customer)
     {
         Stylist stylist = selectStylist();
         if(stylist == null) return;
 
-        System.out.println("\nEnter appointment date and time in (yyyy-MM-dd HH:mm): ");
+        System.out.println("\nEnter appointment date and time in (yyyy-MM-ddTHH:mm): ");
         LocalDateTime appointmentTime = LocalDateTime.parse(scanner.nextLine());
 
         appointmentService.createAppointment(customer, stylist, appointmentTime);
@@ -138,7 +138,7 @@ public class AppointmentController {
      * Displays all the appointments a customer has
      * @param customer - the user is a customer
      */
-    private void viewCustomerAppointments(Customer customer)
+    void viewCustomerAppointments(Customer customer)
     {
         ArrayList<Appointment> appointments = appointmentService.getCustomerAppointments(customer);
         if(appointments.isEmpty())
@@ -152,7 +152,7 @@ public class AppointmentController {
      * Updates the selected appointment
      * @param customer - this is the user
      */
-    private void updateAppointment(Customer customer)
+    void updateAppointment(Customer customer)
     {
         Appointment selected = selectCustomerAppointment(customer);
         if(selected == null) return;
@@ -160,7 +160,7 @@ public class AppointmentController {
         Stylist stylist = selectStylist();
         if(stylist == null) return;
 
-        System.out.println("Enter appointment date and time in (yyyy-MM-dd HH:mm): or press Enter to keep current date and time:");
+        System.out.println("Enter appointment date and time in (yyyy-MM-ddTHH:mm): or press Enter to keep current date and time:");
         String input = scanner.nextLine();
         LocalDateTime newTime = null;
         if(!input.isBlank())
@@ -176,7 +176,7 @@ public class AppointmentController {
      * Cancels the selected appointment for the customer
      * @param customer - this is the user
      */
-    private void cancelCustomerAppointment(Customer customer)
+    void cancelCustomerAppointment(Customer customer)
     {
         Appointment selected = selectCustomerAppointment(customer);
         if(selected == null) return;
@@ -189,7 +189,7 @@ public class AppointmentController {
      * Cancels the selected appointment for the stylist
      * @param stylist - this is the user
      */
-    private void cancelStylistAppointment(Stylist stylist)
+    void cancelStylistAppointment(Stylist stylist)
     {
         Appointment selected = selectStylistAppointment(stylist);
         if(selected == null) return;
@@ -202,7 +202,7 @@ public class AppointmentController {
      * Displays all appointments a stylist has
      * @param stylist - this is the user
      */
-    private void viewStylistAppointments(Stylist stylist)
+    void viewStylistAppointments(Stylist stylist)
     {
         ArrayList<Appointment> appointments = appointmentService.getStylistAppointments(stylist);
         if(appointments.isEmpty())
@@ -217,7 +217,7 @@ public class AppointmentController {
      * Displays a menu for the stylist to manage what days they are working
      * @param stylist - this is the user
      */
-    private void manageWorkDays(Stylist stylist)
+    void manageWorkDays(Stylist stylist)
     {
         boolean running = true;
         while (running) {
@@ -256,7 +256,7 @@ public class AppointmentController {
         }
     }
 
-    private void printAppointments(ArrayList<Appointment> appointments)
+    void printAppointments(ArrayList<Appointment> appointments)
     {
         System.out.println("\n*--Appointments--*\n");
         for(Appointment appointment : appointments)
@@ -270,7 +270,7 @@ public class AppointmentController {
      * @param appointments list of appointments to choose from
      * @return the selected appointment
      */
-    private Appointment selectAppointment(ArrayList<Appointment> appointments)
+    Appointment selectAppointment(ArrayList<Appointment> appointments)
     {
         if(appointments.isEmpty())
         {
@@ -300,7 +300,7 @@ public class AppointmentController {
      * @param customer - the user is a customer
      * @return Appointment object of the selected appointment
      */
-    private Appointment selectCustomerAppointment(Customer customer)
+     Appointment selectCustomerAppointment(Customer customer)
     {
         ArrayList<Appointment> appointments = appointmentService.getCustomerAppointments(customer);
         return selectAppointment(appointments);
@@ -311,7 +311,7 @@ public class AppointmentController {
      * @param stylist - the user is a stylist
      * @return Appointment object of the selected appointment
      */
-    private Appointment selectStylistAppointment(Stylist stylist)
+     Appointment selectStylistAppointment(Stylist stylist)
     {
         ArrayList<Appointment> appointments = appointmentService.getStylistAppointments(stylist);
         return selectAppointment(appointments);
@@ -321,7 +321,7 @@ public class AppointmentController {
      * Chooses a stylist from a list of stylists
      * @return Stylist object of the chosen stylist
      */
-    private Stylist selectStylist()
+    Stylist selectStylist()
     {
         ArrayList<Stylist> stylists = userService.getAllStylists();
         if(stylists.isEmpty())
