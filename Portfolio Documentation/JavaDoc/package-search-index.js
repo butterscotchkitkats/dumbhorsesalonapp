@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"edu.secourse"},{"l":"edu.secourse.salonapp.components"},{"l":"edu.secourse.salonapp.models"},{"l":"edu.secourse.salonapp.services"}];updateSearchResults();
