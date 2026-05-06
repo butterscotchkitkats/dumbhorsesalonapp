@@ -132,7 +132,7 @@ Test results are also available in the included `Test Results - edu_secourse_sal
 Auto-generated JavaDoc documentation is included in the root of the repository. Open `index.html` in your browser to browse the full API reference.
 
 ```bash
-open portfoliodocumentation/javadoc/index.html
+open "Portfolio Documentation/JavaDoc/index.html"
 ```
 
 ---
