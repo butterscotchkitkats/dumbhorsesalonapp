@@ -16,6 +16,12 @@ public class Appointment {
     private int stylistID;
     private LocalDateTime startTime;
     private Status status;
+
+    /**
+     * Status signifies whether the appointment is Active or Cancelled
+     * ACTIVE - an active appointment is one that is either booked for a later date or in progress
+     * CANCELLED - a cancelled appointment is one that the customer booked and decided not to attend
+     */
     public enum  Status {
         ACTIVE, CANCELLED
     }

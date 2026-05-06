@@ -11,6 +11,13 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the appointment menu
+ *
+ * <p>This class controls the user input in regard to all appointment queries</p>
+ * @author Ven Corwell
+ * @version 1.0
+ */
 public class AppointmentController {
     // when user clicks create new appointment button, create a new appointment and add to list
     // when user clicks cancel appointment, delete appointment from list
@@ -21,6 +28,11 @@ public class AppointmentController {
     private UserService userService;
     private Scanner scanner;
 
+    /**
+     * Creates the appointmentController object
+     * @param appointmentService - this is the object that communicates all the appointment CRUD functions
+     * @param userService - this is the object that communicates all the user CRUD functions
+     */
     public AppointmentController(AppointmentService appointmentService, UserService userService) {
         this.appointmentService = appointmentService;
         this.userService = userService;
