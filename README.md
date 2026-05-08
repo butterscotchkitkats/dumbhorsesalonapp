@@ -10,6 +10,7 @@ A Java-based salon booking and management application built with object-oriented
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Class Overview](#class-overview)
+- [CRC Cards](#crc-cards)
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)
 - [Running Tests](#running-tests)
@@ -75,6 +76,12 @@ dumbhorsesalonapp/
 | `UserController` | `edu.secourse.salonapp.services` | Console interface for user-related actions |
 | `AppointmentService` | `edu.secourse.salonapp.services` | Handles appointment business logic |
 | `AppointmentController` | `edu.secourse.salonapp.services` | Console menu for appointment actions |
+
+---
+
+## CRC Cards
+ <img width="1131" height="561" alt="CRC Cards drawio" src="https://github.com/user-attachments/assets/df53194c-3ca5-451f-81f0-5e3b216ecb3b" />
+
 
 ---
 
